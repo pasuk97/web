@@ -21,8 +21,8 @@ import csv
 
 def on_btn_click(event):
     with open('./data.csv','w') as f:
-      wr = csv.writer(f)
-      wr.writerrow([1])
+      line = f.readlines()
+      consol.log(line[0])
 
     global choice
     checked = document.querySelector("[name='choice']:checked").value
