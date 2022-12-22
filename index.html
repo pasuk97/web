@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+  <body>
+    <h1>Question</h1>
+    <ul><input id="rad1" type="radio" name="choice" value="1"><label for="rad1">1</label></ul>
+    <ul><input id="rad2" type="radio" name="choice" value="2"><label for="rad2">2</label></ul>
+    <ul><button id="btn">Go</button></ul>
+    <py-script>
+from js import document 
+from js import console
+from pyodide import create_proxy
+import csv
+
+def on_btn_click(event):
+    with open('./data.csv','w') as f:
+      wr = csv.writer(f)
+      wr.writerrow([1])
+
+    global choice
+    checked = document.querySelector("[name='choice']:checked").value
+      
+button = document.querySelector("#btn")
+button.addEventListener("click", create_proxy(on_btn_click))
+    </py-script>
+  </body>
+</html>
